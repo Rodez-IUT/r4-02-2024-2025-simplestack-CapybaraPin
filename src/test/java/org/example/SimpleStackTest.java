@@ -22,31 +22,35 @@ class SimpleStackTest {
     }
 
     @Test
-    @DisplayName("Test the push of items")
-    public void testPush() throws EmptyStackException {
+    @DisplayName("Test push operation on an empty stack")
+    public void testPushOnEmptyStack() throws EmptyStackException {
 
         // Given an empty stack and an item
         Stack stack = new SimpleStack();
         Item item = new SimpleItem();
 
-        // When the item is pushed in the stack
+        // When the item is pushed onto the empty stack
         stack.push(item);
 
-        // Then…
-        assertFalse(stack.isEmpty(), "The stack must not be empty");
-        assertEquals(1, stack.getSize(),"The stack must constain 1 item");
-        assertSame( item, stack.peek(),"The pushed item must be is on top of the stack");
+        // Then the stack should not be empty, size should be 1 and the top should be the pushed item
+        assertFalse(stack.isEmpty(), "The stack should not be empty after pushing an item");
+        assertEquals(1, stack.getSize(), "The stack should contain exactly 1 item after push");
+        assertSame(item, stack.peek(), "The pushed item should be on top of the stack");
 
-        // Given a new item to add
+        // Now push a second item
         Item item2 = new SimpleItem();
-
-        // When we add the new item
         stack.push(item2);
 
-        // then...
-        assertFalse(stack.isEmpty(), "The stack must be not empty");
-        assertEquals(2, stack.getSize(),"The stack must constain 2 items");
-        assertSame( item2, stack.peek(),"The pushed item must be on top of the stack");
+        // Then
+        assertFalse(stack.isEmpty(), "The stack should not be empty after second push");
+        assertEquals(2, stack.getSize(), "The stack should contain exactly 2 items after second push");
+        assertSame(item2, stack.peek(), "The last pushed item should be on top of the stack");
+    }
+
+    @Test
+    @DisplayName("Test push operation on a non-empty stack")
+    public void testPushOnStack() throws EmptyStackException {
+
     }
 
     @Test
